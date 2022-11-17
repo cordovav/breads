@@ -2,9 +2,9 @@ const React = require('react')
 const breads = require('../controllers/breads_controller')
 const Default = require('./layouts/Default')
 
-function Index(){
+function Index({breads, title}){
     return (
-        <Default>
+        <Default title={title}>
             <h2>Index Page</h2>
             {/*This is a JSX comment. */}
             {/*<p>I have {breads[0].name} bread!</p> */}

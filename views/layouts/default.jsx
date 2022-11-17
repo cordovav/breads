@@ -5,7 +5,7 @@ function Default(html) {
         <html>
             <head>
                 <title>
-                    Default
+                    {html.title || 'Default'}
                 </title>
             </head>
             <body>

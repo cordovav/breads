@@ -1,6 +1,6 @@
 const React = require('react')
 const breads = require('../controllers/breads_controller')
-const Default = require('./layouts/Default')
+const Default = require('./layouts/default')
 
 function Index({breads, title}){
     return (

@@ -9,3 +9,7 @@
 | --- | --- | --- |
 |GET | '/' | The Homepage|
 
+
+sources 
+bread favicon image
+https://freesvg.org/img/Brot.png

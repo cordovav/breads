@@ -3,6 +3,8 @@
 const methodOverride = require('method-override')
 const express = require('express')
 const breads = require('./controllers/breads_controller.js')
+const mongoose = require('mongoose')
+
 
 //Configuration
 require('dotenv').config()
@@ -39,6 +41,9 @@ app.get('*', (req,res) =>{
     res.render('404')
 })
 
+mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true},
+    ()=> {console.log('connected to mongo', process.env.MONGO_URI)})
+    
 //listen
 app.listen(PORT,() =>{
     console.log('listening on port',PORT);

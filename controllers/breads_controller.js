@@ -1,6 +1,7 @@
 const express = require('express')
 const breads = express.Router()
 const Bread = require('../models/bread.js')
+const Baker = require('../models/baker.js')
 
 //index
 breads.get('/', (req, res) => {
@@ -45,13 +46,20 @@ breads.get('/data/seed', (req, res) => {
 
 //new
 breads.get('/new', (req, res) => {
-    res.render('new')
+    Baker.find()
+        .then(foundBakers => {
+            res.render('new', {
+                bakers: foundBakers
+        })
+    })
 })
 
 //show
 breads.get('/:id', (req,res) =>{
     Bread.findById(req.params.id)
         .then(foundBread => {
+            const bakedBy = foundBread.getBakedBy()
+            console.log(bakedBy)
             res.render('show', {
                 bread: foundBread
             })
@@ -74,6 +82,10 @@ breads.post('/', (req, res) => {
     }
     Bread.create(req.body)
     res.redirect('/breads')
+    .catch(err => {
+        console.log('err', err)
+        res.render('404')
+    })
 })
 
 //update
@@ -101,9 +113,10 @@ breads.get('/:id/edit', (req,res) =>{
     
 })
 
+//delete
 breads.delete('/:id', (req, res) => {
     Bread.findByIdAndDelete(req.params.id)
-    .then(deleteBreads =>{
+    .then(deletedBreads =>{
         res.status(303).redirect('/breads')
     })
 })

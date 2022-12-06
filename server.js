@@ -23,7 +23,8 @@ app.engine('jsx', require('express-react-views').createEngine())
 
 //routes
 app.get('/', (req, res) =>{
-    res.send('Welcome to an Awesome App about Breads!')
+    //res.send('Welcome to an Awesome App about Breads!')
+    res.render('home')
 })
 
 //delete
@@ -35,6 +36,10 @@ breads.delete('/:indexArray', (req, res) => {
 const breadsController = require('./controllers/breads_controller.js')
 const bread = require('./models/bread.js')
 app.use('/breads', breadsController)
+
+//bakers
+const bakersController = require('./controllers/bakers_controller.js')
+app.use('/bakers', bakersController)
 
 //404 Page
 app.get('*', (req,res) =>{

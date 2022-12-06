@@ -1,7 +1,7 @@
 const React = require('react')
 const Default = require('./layouts/Default')
 
-function Edit ({bread}) {
+function Edit ({bread, bakers}) {
     return(
         <Default>
             <h2>Edit A Bread</h2>
@@ -22,14 +22,13 @@ function Edit ({bread}) {
                     defaultValue={bread.image}/>
 
                 <label htmlFor="baker">Baker</label>
-                <select name="baker" id="baker">
-                    <option value="">Please Choose A Baker</option>
-                    <option value="Rachel">Rachel</option>
-                    <option value="Monica">Monica</option>
-                    <option value="Joey">Joey</option>
-                    <option value="Chandler">Chandler</option>
-                    <option value="Ross">Ross</option>
-                    <option value="Phoebe">Phoebe</option>
+                
+                <select name="baker" id="baker" defaultValue={bread.baker}>
+                    {bakers.map((baker) => {
+                        return(
+                            <option value={baker.id} key={baker.id}>{baker.name}</option>
+                        )
+                    })}
                 </select>
 
                 <label htmlFor="hasGluten">Had Gluten?</label>
